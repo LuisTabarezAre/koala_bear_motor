@@ -15,6 +15,30 @@
     </visual>
   </link>
 
+  <link name="link_3">
+    <visual>
+      <geometry><cylinder length="0.1" radius="0.05"/></geometry>
+    </visual>
+  </link>
+
+  <link name="link_4">
+    <visual>
+      <geometry><cylinder length="0.1" radius="0.05"/></geometry>
+    </visual>
+  </link>
+
+  <link name="link_5">
+    <visual>
+      <geometry><cylinder length="0.1" radius="0.05"/></geometry>
+    </visual>
+  </link>
+
+  <link name="link_6">
+    <visual>
+      <geometry><cylinder length="0.1" radius="0.05"/></geometry>
+    </visual>
+  </link>
+
   <joint name="joint_1" type="revolute">
     <parent link="base_link"/>
     <child link="link_1"/>
@@ -31,13 +55,44 @@
     <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
   </joint>
 
+  <joint name="joint_3" type="revolute">
+    <parent link="link_2"/>
+    <child link="link_3"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_4" type="revolute">
+    <parent link="link_3"/>
+    <child link="link_4"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_5" type="revolute">
+    <parent link="link_4"/>
+    <child link="link_5"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>  
+
+  <joint name="joint_6" type="revolute">
+    <parent link="link_5"/>
+    <child link="link_6"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="1.0"/>
+  </joint>  
 
   <ros2_control name="BearHardware" type="system">
     <hardware>
       <plugin>bear_hardware_interface/BearSystemHardware</plugin>
       <param name="port_name">/dev/ttyUSB0</param>
       <param name="baudrate">7500000</param>
-      <param name="motor_ids">1,2</param>
+      <param name="motor_ids">1,2,3,4,5,6</param>
     </hardware>
 
     <joint name="joint_1">
@@ -51,6 +106,31 @@
       <state_interface name="position"/>
       <state_interface name="velocity"/>
     </joint>
+
+    <joint name="joint_3">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint_4">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    
+    <joint name="joint_5">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="joint_6">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
   </ros2_control>
 
 </robot>
