@@ -71,6 +71,8 @@ git clone https://github.com/LuisTabarezAre/koala_bear_motor.git
 ### 3.  Install dependencies and build the package:
 ```bash
 cd ~/ros2_ws
+rosdep init
+rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select bear_hardware_interface
 ```
