@@ -1,0 +1,9 @@
+<library path="bear_hardware_interface">
+  <class name="bear_hardware_interface/BearSystemHardware"
+         type="bear_hardware_interface::BearSystemHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      ROS2 Control Hardware Interface for WestWood Robotics BEAR actuators.
+    </description>
+  </class>
+</library>
