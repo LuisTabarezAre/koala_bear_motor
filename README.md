@@ -62,32 +62,38 @@ bear_hardware_interface
 sudo chown -R your_username /usr/local
 sudo usermod -a -G dialout your_username
 ```
-### 2 Sets environment variables
+### 2. Sets environment variables
 ```bash
 source /opt/ros/jazzy/setup.bash
 ```
-### 3. Create the ROS 2 workspace
+### 3. Install ros-controllers and pytrees
+```bash
+sudo apt update
+sudo apt install ros-jazzy-ros2-control ros-jazzy-ros2-controllers
+sudo apt install ros-jazzy-py-trees-ros
+```
+
+### 4. Create the ROS 2 workspace
 ```bash
 mkdir -p ~/ros2_ws_koala/src
 cd ~/ros2_ws_koala/src
 ```
-### 4. Clone the repository
+### 5. Clone the repository
 ```bash
 git clone https://github.com/LuisTabarezAre/koala_bear_motor.git
 ```
-### 5. Initialize and update the ROS dependency tool
+### 6. Initialize and update the ROS dependency tool
 ```bash
 cd ~/ros2_ws_koala
 sudo rosdep init
 rosdep update
 ```
-### 6.  Install dependencies and build the package
+### 7.  Install dependencies and build the package
 ```bash
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select bear_hardware_interface
 ```
-
-### 7. Source the environment
+### 8. Source the environment
 ```bash
 source install/setup.bash
 ```
