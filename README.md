@@ -57,31 +57,37 @@ bear_hardware_interface
 
 ## 🛠️ Installation and Build
 
-### 1. Create the ROS 2 workspace
-
+### 1. Modify the permissions of your computer such that CBEAR can access the serial port
+```bash
+sudo chown -R your_username /usr/local
+sudo usermod -a -G dialout your_username
+```
+### 2 Sets environment variables
+```bash
+source /opt/ros/jazzy/setup.bash
+```
+### 3. Create the ROS 2 workspace
 ```bash
 mkdir -p ~/ros2_ws_koala/src
 cd ~/ros2_ws_koala/src
 ```
-
-### 2. Clone the repository
+### 4. Clone the repository
 ```bash
 git clone https://github.com/LuisTabarezAre/koala_bear_motor.git
 ```
-### 3. Initialize and update the ROS dependency tool:
+### 5. Initialize and update the ROS dependency tool
 ```bash
 cd ~/ros2_ws_koala
 sudo rosdep init
 rosdep update
 ```
-
-### 3.  Install dependencies and build the package:
+### 6.  Install dependencies and build the package
 ```bash
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select bear_hardware_interface
 ```
 
-### 4. Source the environment:
+### 7. Source the environment
 ```bash
 source install/setup.bash
 ```
@@ -131,10 +137,12 @@ XML
 ```
 
 ## 🕹️ Basic Usage
-
+### Launch controller 
+```bash
+ros2 launch bear_hardware_interface bear_hardware.launch.py
+```
 Once the controller is running via your launch.py file, ensure both the joint_state_broadcaster and your desired controller are active.
-
-### Check controller status:
+### Check controller status
 ```bash
 ros2 control list_controllers
 ```
