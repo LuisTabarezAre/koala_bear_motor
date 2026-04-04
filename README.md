@@ -60,19 +60,23 @@ bear_hardware_interface
 ### 1. Create the ROS 2 workspace
 
 ```bash
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
+mkdir -p ~/ros2_ws_koala/src
+cd ~/ros2_ws_koala/src
 ```
 
 ### 2. Clone the repository
 ```bash
 git clone https://github.com/LuisTabarezAre/koala_bear_motor.git
 ```
-### 3.  Install dependencies and build the package:
+### 3. Initialize and update the ROS dependency tool:
 ```bash
-cd ~/ros2_ws
+cd ~/ros2_ws_koala
 sudo rosdep init
 rosdep update
+```
+
+### 3.  Install dependencies and build the package:
+```bash
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select bear_hardware_interface
 ```
