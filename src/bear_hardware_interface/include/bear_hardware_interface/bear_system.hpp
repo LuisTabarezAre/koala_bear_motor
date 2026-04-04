@@ -18,6 +18,14 @@
 
 namespace bear_hardware_interface
 {
+
+enum class control_mode_t {
+  POSITION,
+  VELOCITY,
+  EFFORT,
+  NONE
+};
+
 class BearSystemHardware : public hardware_interface::SystemInterface
 {
 public:
@@ -36,16 +44,32 @@ public:
   std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
   std::vector<hardware_interface::CommandInterface> export_command_interfaces() override;
 
+
+  hardware_interface::return_type prepare_command_mode_switch(
+    const std::vector<std::string> & start_interfaces,
+    const std::vector<std::string> & stop_interfaces) override;
+
+  hardware_interface::return_type perform_command_mode_switch(
+    const std::vector<std::string> & start_interfaces,
+    const std::vector<std::string> & stop_interfaces) override;
+
 private:
   std::vector<double> hw_commands_positions_;
+  std::vector<double> hw_commands_velocities_;
+  std::vector<double> hw_commands_efforts_;
+  
   std::vector<double> hw_states_positions_;
   std::vector<double> hw_states_velocities_;
   std::vector<double> hw_states_efforts_;
+
+  std::vector<control_mode_t> control_modes_;
 
   std::shared_ptr<bear::BEAR> bear_instance_;
   std::string port_name_ = "/dev/ttyUSB0";
   int baudrate_ = 8000000;
   std::vector<int> motor_ids_;
+  
+  const double Kt_ = 0.35; // par-current constant for the Bear motors, in Nm/A
 };
 }  // namespace bear_hardware_interface
 
